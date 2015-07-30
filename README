@@ -1,0 +1,10 @@
+socom: damn simple serial communication
+------
+
+It covers the basic use case of minicom/picocom/miniterm.py
+and the like: read and write on a tty device.
+
+Also, I/Os are pipe-able!
+
+Tested on: Linux
+Requirements: socat, stty
