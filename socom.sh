@@ -7,9 +7,9 @@ if [ $# -lt 1 ] || [ $# -gt 2 ]; then
     exit 1
 fi
 
-BAUD=''
+PORTOPS=''
 if [ $# -eq 2 ]; then
-    BAUD=",b$2"
+    PORTOPS="${PORTOPS},b$2"
 fi
 
 cleanup() {
@@ -19,7 +19,7 @@ cleanup() {
 
 echo "quit: ^]" 1>&2
 
-# is stdin a terminal ?
+# is stdin a terminal?
 if [ -t 0 ]; then
     SAVE="$(stty -g)"
     trap cleanup EXIT
@@ -28,4 +28,9 @@ if [ -t 0 ]; then
     stty raw -echo opost ixon isig intr ^\]
 fi
 
-socat stdio open:"$1,raw${BAUD}"
+# is port a terminal?
+if [ -t "$1" ]; then
+    PORTOPS="${PORTOPS},raw"
+fi
+
+socat stdio open:"$1${PORTOPS}"
