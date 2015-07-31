@@ -28,4 +28,4 @@ if [ -t 0 ]; then
     stty raw -echo opost isig intr ^\]
 fi
 
-socat stdio open:"$1${BAUD}"
+socat stdio open:"$1,raw${BAUD}"
