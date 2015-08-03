@@ -29,8 +29,10 @@ if [ -t 0 ]; then
 fi
 
 # is port a terminal?
-if [ -t "$1" ]; then
+exec 3< "$1"
+if [ -t 3 ]; then
     PORTOPS="${PORTOPS},raw"
 fi
+exec 3>&-
 
 socat stdio open:"$1${PORTOPS}"
