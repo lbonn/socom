@@ -25,7 +25,7 @@ if [ -t 0 ]; then
     trap cleanup EXIT
     # use stty directly instead of using socat options
     # because socat tries to ioctl stdout
-    stty raw -echo opost ixon isig intr ^\]
+    stty raw -echo opost ixon isig intr ^\] icrnl
 fi
 
 # is port a terminal?
