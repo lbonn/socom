@@ -31,7 +31,7 @@ fi
 # is port a terminal?
 exec 3< "$1"
 if [ -t 3 ]; then
-    PORTOPS="${PORTOPS},raw"
+    PORTOPS="${PORTOPS},raw,iexten=0,echo=0,echok=0,echoctl=0,echoke=0,min=0"
 fi
 exec 3>&-
 
